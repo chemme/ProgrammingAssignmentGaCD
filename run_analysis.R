@@ -41,14 +41,19 @@ ProcessData <- function(subMerged) {
 
   print("Processing data and outputting results\n")
   
-  output <- list() # out mean values as list
+  labels <- matrix(, nrow=0, ncol=2) # out mean values as list
+  values <- matrix(, nrow=0, ncol=66)
+  
   for(subj in levels(subMerged$subject)) { # each subject
     for(act in levels(subMerged$activity)) { # each activity
+      labels <- rbind(labels, c(subj, act))
       data <- subset(subMerged, subMerged$subject == subj & subMerged$activity == act) # pull out subset
-      output <- rbind(output, c(subj, act, colMeans(data[,3:68])))
+      values <- rbind(values, colMeans(data[,3:68]))
+      #    labels <- rbind(labels, c(subj, act, colMeans(data[,3:68])))
     }
   }
-  output <- as.data.frame(output)
-  colnames(output)[1:2] <- c("Subject", "Activity")
+  labels <- as.data.frame(labels)
+  colnames(labels)[1:2] <- c("Subject", "Activity")
+  output <- cbind(labels, values)
   output
 }

@@ -66,10 +66,16 @@ output: html_document
 
   Variable Label: Labeled subset of merged data that includes subject code, activity name and measurment data for mean and std.  Serves as the output of PrepareData() function
   
-16. output
+16. labels
 
-  Variable Label: The output data frame returned by ProcessData().  Originally is a file where each row of processed data is added iteratively.  The final variable is converted to a data frame and returned
+  Variable Label: matrix of subject/activity values converted to data frame.  Results in dataframe of each subject with each activity
   
-17. data
+17. values
 
-  Variable Label: subset of subMerged for individual subject and individual activity (e.g. Subject 1, Activity STANDING).  Data is used for the final mean calculation.
+  Variable Label: numerical matrix converted to data frame of means of each column.  Same number of rows as labels
+
+18. output
+
+  Variable Label: The output data frame returned by ProcessData().  Merged labels and values data.
+  
+
